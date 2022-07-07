@@ -15,8 +15,13 @@ end,{
     end
 
     local list = temp.get_temp_list()
-    return vim.tbl_filter(function (s)
-            return string.match(s, "^" .. arg)
-          end,list[ft])
+    local res = table;
+    if list[ft] ~= nil
+        then
+            res = vim.tbl_filter(function(s)
+                return string.match(s, "^" .. arg)
+            end, list[ft]);
+    end
+    return res;
   end
 })
